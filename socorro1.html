@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Bahiana Hardcore</title>
+    <style>
+        body {
+            background: rgb(48, 48, 48);
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20pt;
+        } #t1 {
+            color: rgb(255, 190, 49);
+            text-shadow: 0mm 0mm 1.5cm rgb(255, 190, 49);
+            animation: flutua 3s infinite;
+        } #t2 {
+            border-style: solid;
+            border-radius: 0%;
+            background-color: white;
+            font-size: 20pt;
+            width: 450px;
+            height: 150px;
+            color: black;
+        }input  {
+            border-style: solid;
+            border-color: rgb(255, 190, 49);
+            background-color: rgb(48, 48, 48);
+            color: white ;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: 20pt;
+            transition: 0.3s
+        } input:hover {
+            background-color :rgb(73, 73, 73);
+            transition: 0.3s
+        }
+        input:active {
+            animation: toque 1s;
+        } @keyframes flutua {
+                0% {
+                   transform: translate(0px, 0px);
+                }
+                20% {
+                   transform: translate(0px, 10px);
+                }
+                50% {
+                   transform: translate(0px, 20px);
+                }
+                70% {
+                    transform: translate(0px, 10px);
+                }
+                100% {
+                   transform: translate(0px, 0px);
+                }
+        } @keyframes toque {
+            0% {
+                background-color :rgb(145, 145, 145);
+                border-color: rgb(255, 214, 125);
+            }
+            30% {
+                background-color :rgb(201, 201, 201);
+                border-color: rgb(255, 228, 171);
+            }
+            60% {
+                background-color :rgb(145, 145, 145);
+                border-color: rgb(255, 214, 125);
+            }
+            100% {
+                background-color: rgb(48, 48, 48);
+                border-color: rgb(255, 190, 49);
+            }
+        }
+    </style>
+<body>
+    <center>
+        <h1 id="t1">Calculadora Bahiana Hardcore</h1>
+        <br>
+        <br>
+        <br>
+        <input type="text" id="t2" readonly>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <input type="button" value="1" onclick="calc(1);">
+        <input type="button" value="2" onclick="calc(2);">
+        <input type="button" value="3" onclick="calc(3);">
+        <input type="button" value="AC" onclick="calc(10);">
+        <input type="button" value="DEL" onclick="calc(11);">
+        <br>
+        <input type="button" value="4" onclick="calc(4);">
+        <input type="button" value="5" onclick="calc(5);">
+        <input type="button" value="6" onclick="calc(6);">
+        <input type="button" value="x" onclick="calc(12);">
+        <input type="button" value="/" onclick="calc(13);">
+        <br>
+        <input type="button" value="7" onclick="calc(7);">
+        <input type="button" value="8" onclick="calc(8);">
+        <input type="button" value="9" onclick="calc(9);">
+        <input type="button" value="+" onclick="calc(14);">
+        <input type="button" value="-" onclick="calc(15);">
+        <br>
+        <input type="button" value="=" onclick="calc(16);">
+        <input type="button" value="0" onclick="calc(0);">
+        <input type="button" value="," onclick="calc(17);">
+
+    </center>
+    <script>
+        var tx2 = document.getElementById('t2');
+        var n = [];
+        var ac = 0;
+        var u = 0;
+        var s;
+        var z;
+        var acu = 0;
+        var i = 0;
+        function calc(valor) {
+            acu =0;
+            switch(valor) {
+                case 10:
+                tx2.value = ""; 
+                break
+                case 11:
+                var p = String(tx2.value);
+                z = p.length;
+                z--;
+                p = p.substr(0,z);
+                tx2.value = p; 
+                break
+                case 12:
+                n[0] = Number(tx2.value);
+                tx2.value = ""; 
+                ac = 4;
+                break
+                case 13:
+                n[0] = Number(tx2.value);
+                tx2.value = ""; 
+                ac = 5;
+                break
+                case 14:
+                n[0] = Number(tx2.value);
+                tx2.value = ""; 
+                ac = 6;
+                break 
+                case 15:
+                n[0] = Number(tx2.value);
+                tx2.value = ""; 
+                ac = 7;
+                break
+                case 16:  
+                    n[1] = Number(tx2.value);
+                    switch (ac) {
+                        case 4 : 
+                        acu = 1;
+                        acu = n[0] * n[1];
+                        n[0] = acu;
+                        break
+                        case 5 : 
+                        acu = 1;
+                        acu = n[0] / n[1];
+                        n[0] = acu;
+                        break
+                        case 6 :
+                        acu = n[0] + n[1];
+                        n[0] = acu;
+                        break
+                        case 7 :
+                        acu = n[0] - n[1];
+                        n[0] = acu;
+                        break
+                    }
+                tx2.value = n[0]; 
+                break
+                case 17:
+                tx2.value += "."; 
+                break
+                default : 
+                tx2.value += valor; 
+                break
+
+            }
+        }
+    </script>
+</body>
+</html>
